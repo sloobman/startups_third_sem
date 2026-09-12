@@ -54,13 +54,11 @@ a {
 
 .logo-mark,
 .app-logo {
-  display: inline-grid;
+  display: block;
   width: 36px;
   height: 36px;
-  place-items: center;
   border-radius: 8px;
-  background: var(--accent);
-  color: var(--paper);
+  object-fit: contain;
 }
 
 .nav {
