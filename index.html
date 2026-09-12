@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
   </head>
   <body>
     <header class="site-header">
@@ -27,8 +28,8 @@
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-bg" aria-hidden="true">
-          <div class="library-scene">
-            <article class="saved-page page-main">
+          <div class="library-scene" data-parallax-scene>
+            <article class="saved-page page-main" data-depth="0.12">
               <span class="page-tag">saved</span>
               <h2>How to build focus</h2>
               <p>Clean article view with highlights, notes and instant search.</p>
@@ -36,13 +37,13 @@
               <div class="text-line wide"></div>
               <div class="text-line"></div>
             </article>
-            <article class="saved-page page-side">
+            <article class="saved-page page-side" data-depth="0.22">
               <span class="page-tag">offline</span>
               <h2>Design notes</h2>
               <div class="text-line wide"></div>
               <div class="text-line short"></div>
             </article>
-            <article class="saved-page page-doc">
+            <article class="saved-page page-doc" data-depth="0.17">
               <span class="page-tag">pdf</span>
               <h2>Research brief</h2>
               <div class="text-line wide"></div>

@@ -108,6 +108,10 @@ a {
 
 .saved-page {
   position: absolute;
+  --base-rotate: 0deg;
+  --pointer-x: 0px;
+  --pointer-y: 0px;
+  --scroll-shift: 0px;
   width: 360px;
   padding: 28px;
   border: 1px solid rgba(247, 245, 239, 0.24);
@@ -115,6 +119,9 @@ a {
   background: rgba(247, 245, 239, 0.95);
   color: var(--ink);
   box-shadow: var(--shadow);
+  transform: translate3d(var(--pointer-x), calc(var(--pointer-y) + var(--scroll-shift)), 0) rotate(var(--base-rotate));
+  transition: box-shadow 220ms ease, border-color 220ms ease;
+  will-change: transform;
 }
 
 .saved-page h2 {
@@ -138,13 +145,13 @@ a {
 .page-side {
   top: 14%;
   left: 49%;
-  transform: rotate(4deg);
+  --base-rotate: 4deg;
 }
 
 .page-doc {
   top: 55%;
   left: 42%;
-  transform: rotate(-3deg);
+  --base-rotate: -3deg;
 }
 
 .page-tag,
@@ -234,12 +241,31 @@ h1 {
   padding: 0 24px;
   background: var(--accent);
   color: var(--paper);
+  box-shadow: 0 18px 42px rgba(255, 107, 74, 0.28);
 }
 
 .secondary-button {
   padding: 0 22px;
   border: 1px solid rgba(247, 245, 239, 0.28);
   color: var(--paper);
+}
+
+.primary-button,
+.secondary-button,
+.store-button,
+.feature-card {
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background-color 220ms ease;
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.store-button:hover {
+  transform: translateY(-3px);
+}
+
+.secondary-button:hover {
+  border-color: rgba(247, 245, 239, 0.62);
+  background: rgba(247, 245, 239, 0.08);
 }
 
 .intro-band,
@@ -305,6 +331,15 @@ h1 {
   background: rgba(255, 255, 255, 0.38);
 }
 
+.feature-card:hover {
+  position: relative;
+  z-index: 1;
+  border-color: rgba(255, 107, 74, 0.48);
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: 0 20px 48px rgba(16, 23, 38, 0.1);
+  transform: translateY(-6px);
+}
+
 .feature-icon {
   color: var(--accent);
   font-weight: 800;
@@ -340,6 +375,7 @@ h1 {
   border-radius: 34px;
   background: #0b101c;
   box-shadow: var(--shadow);
+  transform: perspective(1100px) rotateY(-8deg) rotateX(4deg);
 }
 
 .phone-status {
@@ -460,6 +496,41 @@ h1 {
   text-align: left;
 }
 
+.store-button:hover {
+  box-shadow: 0 18px 42px rgba(16, 23, 38, 0.18);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.feature-card.reveal:nth-child(2) {
+  transition-delay: 80ms;
+}
+
+.feature-card.reveal:nth-child(3) {
+  transition-delay: 160ms;
+}
+
+.feature-card.reveal:nth-child(4) {
+  transition-delay: 240ms;
+}
+
+.feature-card.reveal.is-visible:hover {
+  transform: translateY(-6px);
+}
+
+.phone-shell.reveal.is-visible {
+  transform: perspective(1100px) rotateY(-8deg) rotateX(4deg);
+}
+
 .store-button small {
   display: block;
   color: rgba(247, 245, 239, 0.68);
@@ -567,5 +638,33 @@ h1 {
 
   .site-footer {
     flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .saved-page,
+  .phone-shell,
+  .feature-card:hover,
+  .primary-button:hover,
+  .secondary-button:hover,
+  .store-button:hover,
+  .reveal {
+    transform: none;
+  }
+
+  .reveal {
+    opacity: 1;
   }
 }
