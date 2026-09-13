@@ -4,10 +4,38 @@ const revealItems = document.querySelectorAll(".intro-band, .section-heading, .f
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 const header = document.querySelector(".site-header");
+const featureCards = [...document.querySelectorAll(".feature-card")];
+const sectionBridges = document.querySelectorAll(".section-bridge");
 
 let parallaxFrame = 0;
 let pointerFrame = 0;
 let lastPointer = { x: 0, y: 0 };
+let stackFrame = 0;
+
+function updateHeader() {
+  if (header) header.classList.toggle("is-scrolled", window.scrollY > 24);
+}
+
+function updateFeatureStack() {
+  stackFrame = 0;
+  if (prefersReducedMotion.matches || !featureCards.length) return;
+
+  const stickyTop = window.innerWidth <= 620 ? 74 : window.innerWidth <= 940 ? 82 : Math.min(148, Math.max(96, window.innerHeight * 0.14));
+  const focusLine = stickyTop + 120;
+
+  featureCards.forEach((card, index) => {
+    const rect = card.getBoundingClientRect();
+    const distance = Math.max(0, Math.min(1, (focusLine - rect.top) / Math.max(rect.height, 1)));
+    card.style.setProperty("--stack-index", index + 1);
+    card.style.setProperty("--stack-scale", `${1 - distance * 0.035}`);
+    card.style.setProperty("--stack-lift", `${-distance * 5}px`);
+    card.classList.toggle("stack-active", rect.top <= focusLine && rect.bottom > stickyTop);
+  });
+}
+
+function requestFeatureStackUpdate() {
+  if (!stackFrame) stackFrame = requestAnimationFrame(updateFeatureStack);
+}
 
 function updateHeader() {
   if (header) header.classList.toggle("is-scrolled", window.scrollY > 24);
@@ -51,7 +79,10 @@ if (!prefersReducedMotion.matches) {
   requestParallaxUpdate();
 }
 window.addEventListener("scroll", updateHeader, { passive: true });
+window.addEventListener("scroll", requestFeatureStackUpdate, { passive: true });
+window.addEventListener("resize", requestFeatureStackUpdate, { passive: true });
 updateHeader();
+requestFeatureStackUpdate();
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
@@ -64,6 +95,20 @@ const revealObserver = new IntersectionObserver(
   },
   { threshold: 0.14 }
 );
+
+const bridgeObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        bridgeObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0, rootMargin: "0px 0px -12% 0px" }
+);
+
+sectionBridges.forEach((bridge) => bridgeObserver.observe(bridge));
 
 revealItems.forEach((item, index) => {
   item.classList.add("reveal");
