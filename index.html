@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="HoldIt сохраняет статьи, посты и документы в чистую персональную библиотеку, доступную даже без интернета.">
+    <meta name="theme-color" content="#101726">
+    <title>HoldIt — сохраняйте сейчас, читайте потом</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="logo" href="#top" aria-label="HoldIt">
+        <img class="logo-mark" src="1 pr/HoldIt mark light.svg" alt="" width="36" height="36">
+        <span>HoldIt</span>
+      </a>
+      <nav class="nav" aria-label="Главная навигация">
+        <a href="#features">Возможности</a>
+        <a href="#offline">Оффлайн</a>
+        <a href="#download">Скачать</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-bg" aria-hidden="true">
+          <div class="library-scene" data-parallax-scene>
+            <article class="saved-page page-main" data-depth="0.12">
+              <span class="page-tag">saved</span>
+              <h2>How to build focus</h2>
+              <p>Clean article view with highlights, notes and instant search.</p>
+              <div class="highlight-line"></div>
+              <div class="text-line wide"></div>
+              <div class="text-line"></div>
+            </article>
+            <article class="saved-page page-side" data-depth="0.22">
+              <span class="page-tag">offline</span>
+              <h2>Design notes</h2>
+              <div class="text-line wide"></div>
+              <div class="text-line short"></div>
+            </article>
+            <article class="saved-page page-doc" data-depth="0.17">
+              <span class="page-tag">pdf</span>
+              <h2>Research brief</h2>
+              <div class="text-line wide"></div>
+              <div class="text-line"></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="hero-content">
+          <p class="eyebrow">Персональная библиотека без шума</p>
+          <h1 id="hero-title">HoldIt</h1>
+          <p class="hero-lead">Сохраняйте сейчас — читайте потом. HoldIt превращает статьи, посты и документы в удобный архив, очищает их от рекламы и помогает быстро вернуться к важному.</p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#download">Скачать приложение</a>
+            <a class="secondary-button" href="#features">Посмотреть возможности</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro-band" aria-label="Ключевая идея">
+        <div>
+          <p class="section-kicker">Ваш интернет-архив</p>
+          <h2>Без информационного шума, отвлечений и потерянных вкладок.</h2>
+        </div>
+        <p>Собирайте материалы из интернета в одном месте, синхронизируйте их между устройствами, выделяйте главное и открывайте нужное даже без подключения.</p>
+      </section>
+
+      <section class="features" id="features" aria-labelledby="features-title">
+        <div class="section-heading">
+          <p class="section-kicker">Что умеет HoldIt</p>
+          <h2 id="features-title">Все важное остается рядом.</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="feature-icon">01</span>
+            <h3>Чистое чтение</h3>
+            <p>Статьи и посты открываются без рекламы, лишних блоков и визуального шума.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon">02</span>
+            <h3>Оффлайн-доступ</h3>
+            <p>Сохраненные материалы доступны в дороге, самолете и местах без стабильной сети.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon">03</span>
+            <h3>Выделения и заметки</h3>
+            <p>Отмечайте ключевые мысли и собирайте собственный слой знаний поверх контента.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon">04</span>
+            <h3>Быстрый поиск</h3>
+            <p>Находите нужные фрагменты по словам, темам и сохраненным документам.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="offline" id="offline" aria-labelledby="offline-title">
+        <div class="phone-shell" aria-label="Превью приложения HoldIt">
+          <div class="phone-status">
+            <span>9:41</span>
+            <span>Offline</span>
+          </div>
+          <div class="app-screen">
+            <div class="app-top">
+              <img class="app-logo" src="1 pr/HoldIt mark.svg" alt="" width="36" height="36">
+              <span>Library</span>
+            </div>
+            <div class="search-pill">Поиск по архиву</div>
+            <div class="article-row active">
+              <strong>Маркетинг без шума</strong>
+              <span>12 выделений</span>
+            </div>
+            <div class="article-row">
+              <strong>Исследование UX</strong>
+              <span>PDF · оффлайн</span>
+            </div>
+            <div class="article-row">
+              <strong>Пост о продуктивности</strong>
+              <span>4 мин чтения</span>
+            </div>
+          </div>
+        </div>
+        <div class="offline-copy">
+          <p class="section-kicker">Для спокойного чтения</p>
+          <h2 id="offline-title">Интернет можно выключить. Библиотека останется.</h2>
+          <p>HoldIt сохраняет содержимое, а не хаос вокруг него. Вы получаете компактную коллекцию материалов, где легко читать, возвращаться к мыслям и продолжать с любого устройства.</p>
+          <ul class="check-list">
+            <li>Автоматическая синхронизация между устройствами</li>
+            <li>Поддержка статей, постов и документов</li>
+            <li>Удобные подборки для работы, учебы и личных тем</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="download" id="download" aria-labelledby="download-title">
+        <p class="section-kicker">Старт за минуту</p>
+        <h2 id="download-title">Скачайте HoldIt и соберите свой спокойный интернет.</h2>
+        <div class="store-buttons" aria-label="Ссылки на магазины приложений">
+          <a class="store-button" href="#" aria-label="Скачать в Google Play">
+            <span class="store-icon">▶</span>
+            <span><small>Скачать в</small>Google Play</span>
+          </a>
+          <a class="store-button" href="#" aria-label="Скачать в App Store">
+            <span class="store-icon">●</span>
+            <span><small>Загрузить в</small>App Store</span>
+          </a>
+          <a class="store-button" href="#" aria-label="Скачать в RuStore">
+            <span class="store-icon">R</span>
+            <span><small>Доступно в</small>RuStore</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>HoldIt</span>
+      <span>Сохраняйте сейчас — читайте потом.</span>
+    </footer>
+  </body>
+</html>
