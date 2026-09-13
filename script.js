@@ -110,20 +110,6 @@ if (finePointer.matches && !prefersReducedMotion.matches) {
     });
   });
 
-  const cursor = document.createElement("span");
-  cursor.className = "cursor-dot";
-  cursor.setAttribute("aria-hidden", "true");
-  document.body.append(cursor);
-
-  window.addEventListener("pointermove", (event) => {
-    cursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
-  }, { passive: true });
-
-  document.querySelectorAll("a, button, .feature-card, [data-tilt]").forEach((interactive) => {
-    interactive.addEventListener("pointerenter", () => cursor.classList.add("is-active"));
-    interactive.addEventListener("pointerleave", () => cursor.classList.remove("is-active"));
-  });
-
   document.querySelectorAll(".primary-button").forEach((button) => {
     button.addEventListener("pointerdown", (event) => {
       const ripple = document.createElement("span");

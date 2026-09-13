@@ -889,26 +889,6 @@ h1 {
   color: var(--ink);
 }
 
-.cursor-dot {
-  position: fixed;
-  z-index: 60;
-  top: -7px;
-  left: -7px;
-  width: 14px;
-  height: 14px;
-  border: 1px solid var(--accent);
-  border-radius: 50%;
-  pointer-events: none;
-  transition: width 220ms var(--ease-expo), height 220ms var(--ease-expo), background-color 220ms ease;
-  will-change: transform;
-}
-
-.cursor-dot.is-active {
-  width: 34px;
-  height: 34px;
-  background: rgba(255, 107, 74, 0.16);
-}
-
 .reveal {
   opacity: 0;
   transform: translateY(28px);
