@@ -10,7 +10,7 @@ Static one-page website for GitHub Pages.
 4. Select the branch with these files and the root folder.
 5. Save the settings and wait for GitHub to publish the site.
 
-Store links in `index.html` currently use `#` placeholders. Replace them with real Google Play, App Store, and RuStore URLs before launch.
+The current call to action uses a `mailto:` early-access request because public store links are not live yet. Replace it with real Google Play, App Store, and RuStore URLs when the apps are published.
 
 ## Motion and accessibility
 

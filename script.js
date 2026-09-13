@@ -1,73 +1,115 @@
-const hero = document.querySelector(".hero");
-const parallaxItems = document.querySelectorAll("[data-depth]");
-const revealItems = document.querySelectorAll(".intro-band, .section-heading, .feature-card, .phone-shell, .offline-copy, .download");
+const header = document.querySelector("[data-header]");
+const revealItems = document.querySelectorAll(".signal-band, .section-heading, .feature-card, .workflow-copy, .workflow-steps article, .use-cases, .phone-shell, .offline-copy, .access-copy, .access-card");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 
-let parallaxFrame = 0;
-let pointerFrame = 0;
-let lastPointer = { x: 0, y: 0 };
+const caseContent = {
+  founders: {
+    label: "Основатели и продуктовые команды",
+    title: "Собирайте ресерч рынка, заметки о конкурентах и статьи по росту в одном архиве.",
+    bullets: [
+      "Быстро возвращайтесь к фактам перед питчем.",
+      "Храните customer discovery, PDF и посты без потери контекста.",
+      "Делайте подборки под гипотезы, сегменты и фичи."
+    ]
+  },
+  students: {
+    label: "Студенты и исследователи",
+    title: "Превращайте учебные материалы, статьи и PDF в библиотеку, которая работает без интернета.",
+    bullets: [
+      "Читайте сохраненные источники в дороге и между парами.",
+      "Отмечайте ключевые мысли прямо в материале.",
+      "Находите нужные фрагменты перед экзаменом или защитой."
+    ]
+  },
+  creators: {
+    label: "Авторы, редакторы и маркетологи",
+    title: "Собирайте референсы, идеи для контента и сильные формулировки без хаоса в закладках.",
+    bullets: [
+      "Держите источники для статей и сценариев в одном месте.",
+      "Возвращайтесь к сохраненным инсайтам через поиск.",
+      "Разделяйте подборки по проектам, рубрикам и клиентам."
+    ]
+  }
+};
 
-function updateParallax() {
-  parallaxFrame = 0;
-  if (!hero || prefersReducedMotion.matches) return;
-
-  const scrollProgress = Math.min(window.scrollY / hero.offsetHeight, 1);
-  parallaxItems.forEach((item) => {
-    const depth = Number(item.dataset.depth);
-    item.style.setProperty("--scroll-shift", `${scrollProgress * depth * -180}px`);
-  });
+function updateHeader() {
+  if (!header) return;
+  header.classList.toggle("is-scrolled", window.scrollY > 18);
 }
 
-function requestParallaxUpdate() {
-  if (!parallaxFrame) parallaxFrame = requestAnimationFrame(updateParallax);
-}
+updateHeader();
+window.addEventListener("scroll", updateHeader, { passive: true });
 
-function updatePointerParallax() {
-  pointerFrame = 0;
-  if (!hero || prefersReducedMotion.matches) return;
-
-  const rect = hero.getBoundingClientRect();
-  const pointerX = (lastPointer.x - rect.left) / rect.width - 0.5;
-  const pointerY = (lastPointer.y - rect.top) / rect.height - 0.5;
-  parallaxItems.forEach((item) => {
-    const depth = Number(item.dataset.depth);
-    item.style.setProperty("--pointer-x", `${pointerX * depth * 72}px`);
-    item.style.setProperty("--pointer-y", `${pointerY * depth * 72}px`);
-  });
-}
-
-if (!prefersReducedMotion.matches) {
-  window.addEventListener("scroll", requestParallaxUpdate, { passive: true });
-  window.addEventListener("pointermove", (event) => {
-    lastPointer = { x: event.clientX, y: event.clientY };
-    if (!pointerFrame) pointerFrame = requestAnimationFrame(updatePointerParallax);
-  }, { passive: true });
-  requestParallaxUpdate();
-}
-
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
+if ("IntersectionObserver" in window && !prefersReducedMotion.matches) {
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
         entry.target.classList.add("is-visible");
         revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.14 }
-);
+      });
+    },
+    { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
+  );
 
-revealItems.forEach((item, index) => {
-  item.classList.add("reveal");
-  if (item.classList.contains("feature-card")) {
-    item.style.setProperty("--reveal-delay", `${(index % 4) * 80}ms`);
-    item.style.transitionDelay = "var(--reveal-delay)";
+  revealItems.forEach((item, index) => {
+    item.classList.add("reveal");
+    item.style.transitionDelay = `${Math.min(index % 4, 3) * 70}ms`;
+    revealObserver.observe(item);
+  });
+} else {
+  revealItems.forEach((item) => item.classList.add("is-visible"));
+}
+
+document.querySelectorAll("[data-count]").forEach((counter) => {
+  const target = Number(counter.dataset.count);
+  if (!Number.isFinite(target) || prefersReducedMotion.matches) {
+    counter.textContent = String(target);
+    return;
   }
-  revealObserver.observe(item);
+
+  let startTime = 0;
+  const duration = 900;
+  const tick = (time) => {
+    if (!startTime) startTime = time;
+    const progress = Math.min((time - startTime) / duration, 1);
+    counter.textContent = String(Math.round(target * progress));
+    if (progress < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+});
+
+const casePanel = document.querySelector("[data-case-panel]");
+document.querySelectorAll("[data-case]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const content = caseContent[button.dataset.case];
+    if (!casePanel || !content) return;
+
+    document.querySelectorAll("[data-case]").forEach((tab) => tab.classList.remove("is-active"));
+    button.classList.add("is-active");
+    casePanel.innerHTML = `
+      <p class="case-label">${content.label}</p>
+      <h3>${content.title}</h3>
+      <ul>${content.bullets.map((item) => `<li>${item}</li>`).join("")}</ul>
+    `;
+  });
 });
 
 if (finePointer.matches && !prefersReducedMotion.matches) {
+  document.querySelectorAll("[data-tilt]").forEach((panel) => {
+    panel.addEventListener("pointermove", (event) => {
+      const rect = panel.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      panel.style.transform = `perspective(1100px) rotateY(${x * 7}deg) rotateX(${y * -7}deg) translateY(-4px)`;
+    });
+
+    panel.addEventListener("pointerleave", () => {
+      panel.style.transform = "";
+    });
+  });
+
   const cursor = document.createElement("span");
   cursor.className = "cursor-dot";
   cursor.setAttribute("aria-hidden", "true");
@@ -77,12 +119,12 @@ if (finePointer.matches && !prefersReducedMotion.matches) {
     cursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
   }, { passive: true });
 
-  document.querySelectorAll("a, .feature-card").forEach((interactive) => {
+  document.querySelectorAll("a, button, .feature-card, [data-tilt]").forEach((interactive) => {
     interactive.addEventListener("pointerenter", () => cursor.classList.add("is-active"));
     interactive.addEventListener("pointerleave", () => cursor.classList.remove("is-active"));
   });
 
-  document.querySelectorAll(".primary-button, .store-button").forEach((button) => {
+  document.querySelectorAll(".primary-button").forEach((button) => {
     button.addEventListener("pointerdown", (event) => {
       const ripple = document.createElement("span");
       ripple.className = "ripple";
