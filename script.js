@@ -3,10 +3,15 @@ const parallaxItems = document.querySelectorAll("[data-depth]");
 const revealItems = document.querySelectorAll(".intro-band, .section-heading, .feature-card, .phone-shell, .offline-copy, .download");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+const header = document.querySelector(".site-header");
 
 let parallaxFrame = 0;
 let pointerFrame = 0;
 let lastPointer = { x: 0, y: 0 };
+
+function updateHeader() {
+  if (header) header.classList.toggle("is-scrolled", window.scrollY > 24);
+}
 
 function updateParallax() {
   parallaxFrame = 0;
@@ -45,6 +50,8 @@ if (!prefersReducedMotion.matches) {
   }, { passive: true });
   requestParallaxUpdate();
 }
+window.addEventListener("scroll", updateHeader, { passive: true });
+updateHeader();
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
