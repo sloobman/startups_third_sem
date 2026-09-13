@@ -37,6 +37,10 @@ function requestFeatureStackUpdate() {
   if (!stackFrame) stackFrame = requestAnimationFrame(updateFeatureStack);
 }
 
+function updateHeader() {
+  if (header) header.classList.toggle("is-scrolled", window.scrollY > 24);
+}
+
 function updateParallax() {
   parallaxFrame = 0;
   if (!hero || prefersReducedMotion.matches) return;
