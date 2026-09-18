@@ -19,8 +19,8 @@
         <span>HoldIt</span>
       </a>
       <nav class="nav" aria-label="Главная навигация">
+        <a href="#about">Что это?</a>
         <a href="#features">Возможности</a>
-        <a href="#offline">Оффлайн</a>
         <a href="#download">Скачать</a>
       </nav>
     </header>
@@ -30,22 +30,22 @@
         <div class="hero-bg" aria-hidden="true">
           <div class="library-scene" data-parallax-scene>
             <article class="saved-page page-main" data-depth="0.12">
-              <span class="page-tag">saved</span>
-              <h2>How to build focus</h2>
-              <p>Clean article view with highlights, notes and instant search.</p>
+              <span class="page-tag">сохранено</span>
+              <h2>Выделяйте главное</h2>
+              <p>Как текстовыделителем в тетради</p>
               <div class="highlight-line"></div>
               <div class="text-line wide"></div>
               <div class="text-line"></div>
             </article>
             <article class="saved-page page-side" data-depth="0.22">
-              <span class="page-tag">offline</span>
-              <h2>Design notes</h2>
+              <span class="page-tag">оффлайн</span>
+              <h2>Читайте в метро и самолете</h2>
               <div class="text-line wide"></div>
               <div class="text-line short"></div>
             </article>
             <article class="saved-page page-doc" data-depth="0.17">
-              <span class="page-tag">pdf</span>
-              <h2>Research brief</h2>
+              <span class="page-tag">ничего лишнего</span>
+              <h2>Остаются только текст и картинки</h2>
               <div class="text-line wide"></div>
               <div class="text-line"></div>
             </article>
@@ -63,7 +63,7 @@
         </div>
       </section>
 
-      <section class="intro-band" aria-label="Ключевая идея">
+      <section class="intro-band stack-panel" id="about" aria-label="Ключевая идея">
         <div>
           <p class="section-kicker">Ваш интернет-архив</p>
           <h2>Без информационного шума, отвлечений и потерянных вкладок.</h2>
@@ -71,96 +71,84 @@
         <p>Собирайте материалы из интернета в одном месте, синхронизируйте их между устройствами, выделяйте главное и открывайте нужное даже без подключения.</p>
       </section>
 
-      <section class="features" id="features" aria-labelledby="features-title">
-        <div class="section-heading">
-          <p class="section-kicker">Что умеет HoldIt</p>
-          <h2 id="features-title">Все важное остается рядом.</h2>
-        </div>
-        <div class="feature-grid">
-          <article class="feature-card">
-            <span class="feature-icon">01</span>
-            <h3>Чистое чтение</h3>
-            <p>Статьи и посты открываются без рекламы, лишних блоков и визуального шума.</p>
-          </article>
-          <article class="feature-card">
-            <span class="feature-icon">02</span>
-            <h3>Оффлайн-доступ</h3>
-            <p>Сохраненные материалы доступны в дороге, самолете и местах без стабильной сети.</p>
-          </article>
-          <article class="feature-card">
-            <span class="feature-icon">03</span>
-            <h3>Выделения и заметки</h3>
-            <p>Отмечайте ключевые мысли и собирайте собственный слой знаний поверх контента.</p>
-          </article>
-          <article class="feature-card">
-            <span class="feature-icon">04</span>
-            <h3>Быстрый поиск</h3>
-            <p>Находите нужные фрагменты по словам, темам и сохраненным документам.</p>
-          </article>
+      <section class="features stack-panel" id="features" aria-labelledby="features-title">
+        <div class="features-layout">
+          <div class="features-content">
+            <div class="section-heading">
+              <p class="section-kicker">Что умеет HoldIt</p>
+              <h2 id="features-title">Все важное остается рядом.</h2>
+            </div>
+            <div class="feature-grid">
+              <article class="feature-card">
+                <span class="feature-icon">01</span>
+                <h3>Только чтение</h3>
+                <p>Статьи и посты открываются без рекламы, лишних блоков и визуального шума.</p>
+              </article>
+              <article class="feature-card">
+                <span class="feature-icon">02</span>
+                <h3>Оффлайн-доступ</h3>
+                <p>Сохраненные материалы доступны в дороге, самолете и местах без стабильной сети.</p>
+              </article>
+              <article class="feature-card">
+                <span class="feature-icon">03</span>
+                <h3>Выделения и заметки</h3>
+                <p>Отмечайте ключевые мысли и собирайте собственный слой знаний поверх контента.</p>
+              </article>
+              <article class="feature-card">
+                <span class="feature-icon">04</span>
+                <h3>Быстрый поиск</h3>
+                <p>Находите нужные фрагменты по словам, темам и сохраненным документам.</p>
+              </article>
+            </div>
+          </div>
+          <div class="feature-preview">
+            <div class="phone-shell" aria-label="Превью приложения HoldIt">
+              <div class="phone-status">
+                <span>9:41</span>
+                <span>Оффлайн-режим</span>
+              </div>
+              <div class="app-screen">
+                <div class="app-top">
+                  <img class="app-logo" src="1 pr/HoldIt mark.svg" alt="" width="36" height="36">
+                  <span>Библиотека</span>
+                </div>
+                <div class="search-pill">Поиск по архиву</div>
+                <div class="article-row active">
+                  <strong>Вышла Java 27</strong>
+                  <span>12 выделений</span>
+                </div>
+                <div class="article-row">
+                  <strong>Тайм-менеджмент</strong>
+                  <span>из habr.com</span>
+                </div>
+                <div class="article-row">
+                  <strong>Управление IT проектом</strong>
+                  <span>4 мин чтения</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="offline" id="offline" aria-labelledby="offline-title">
-        <div class="phone-shell" aria-label="Превью приложения HoldIt">
-          <div class="phone-status">
-            <span>9:41</span>
-            <span>Offline</span>
-          </div>
-          <div class="app-screen">
-            <div class="app-top">
-              <img class="app-logo" src="1 pr/HoldIt mark.svg" alt="" width="36" height="36">
-              <span>Library</span>
-            </div>
-            <div class="search-pill">Поиск по архиву</div>
-            <div class="article-row active">
-              <strong>Маркетинг без шума</strong>
-              <span>12 выделений</span>
-            </div>
-            <div class="article-row">
-              <strong>Исследование UX</strong>
-              <span>PDF · оффлайн</span>
-            </div>
-            <div class="article-row">
-              <strong>Пост о продуктивности</strong>
-              <span>4 мин чтения</span>
-            </div>
-          </div>
-        </div>
-        <div class="offline-copy">
-          <p class="section-kicker">Для спокойного чтения</p>
-          <h2 id="offline-title">Интернет можно выключить. Библиотека останется.</h2>
-          <p>HoldIt сохраняет содержимое, а не хаос вокруг него. Вы получаете компактную коллекцию материалов, где легко читать, возвращаться к мыслям и продолжать с любого устройства.</p>
-          <ul class="check-list">
-            <li>Автоматическая синхронизация между устройствами</li>
-            <li>Поддержка статей, постов и документов</li>
-            <li>Удобные подборки для работы, учебы и личных тем</li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="download" id="download" aria-labelledby="download-title">
+      <section class="download stack-panel" id="download" aria-labelledby="download-title">
         <p class="section-kicker">Старт за минуту</p>
         <h2 id="download-title">Скачайте HoldIt и соберите свой спокойный интернет.</h2>
         <div class="store-buttons" aria-label="Ссылки на магазины приложений">
           <a class="store-button" href="#" aria-label="Скачать в Google Play">
-            <span class="store-icon">▶</span>
+            <img class="store-icon" src="google-play.svg" alt="" width="34" height="34">
             <span><small>Скачать в</small>Google Play</span>
           </a>
           <a class="store-button" href="#" aria-label="Скачать в App Store">
-            <span class="store-icon">●</span>
+            <img class="store-icon" src="App_Store_(iOS,_2024).svg.png" alt="" width="34" height="34">
             <span><small>Загрузить в</small>App Store</span>
           </a>
           <a class="store-button" href="#" aria-label="Скачать в RuStore">
-            <span class="store-icon">R</span>
+            <img class="store-icon" src="rustore.svg" alt="" width="34" height="34">
             <span><small>Доступно в</small>RuStore</span>
           </a>
         </div>
       </section>
     </main>
-
-    <footer class="site-footer">
-      <span>HoldIt</span>
-      <span>Сохраняйте сейчас — читайте потом.</span>
-    </footer>
   </body>
 </html>

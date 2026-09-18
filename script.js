@@ -1,6 +1,7 @@
 const hero = document.querySelector(".hero");
 const parallaxItems = document.querySelectorAll("[data-depth]");
-const revealItems = document.querySelectorAll(".intro-band, .section-heading, .feature-card, .phone-shell, .offline-copy, .download");
+const revealItems = document.querySelectorAll(".intro-band > *, .section-heading, .feature-card, .phone-shell, .download > *");
+const stackPanels = document.querySelectorAll(".stack-panel");
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -54,3 +55,22 @@ revealItems.forEach((item) => {
   item.classList.add("reveal");
   revealObserver.observe(item);
 });
+
+if (!prefersReducedMotion.matches) {
+  const stackObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-stacked");
+          stackObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.08 }
+  );
+
+  stackPanels.forEach((panel) => {
+    panel.classList.add("stack-ready");
+    stackObserver.observe(panel);
+  });
+}
