@@ -568,6 +568,196 @@ h1 {
   flex: none;
 }
 
+.cookie-banner {
+  position: fixed;
+  right: clamp(14px, 3vw, 32px);
+  bottom: clamp(14px, 3vw, 32px);
+  left: clamp(14px, 3vw, 32px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid rgba(247, 245, 239, 0.18);
+  border-radius: 18px;
+  background: rgba(16, 23, 38, 0.94);
+  color: var(--paper);
+  box-shadow: 0 22px 70px rgba(16, 23, 38, 0.34);
+  backdrop-filter: blur(18px) saturate(140%);
+  animation: cookie-enter 420ms ease both;
+}
+
+.cookie-banner[hidden] {
+  display: none;
+}
+
+.cookie-banner.is-closing {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.cookie-copy {
+  max-width: 720px;
+}
+
+.cookie-copy h2 {
+  margin: 0 0 6px;
+  font-size: clamp(18px, 2vw, 22px);
+}
+
+.cookie-copy p {
+  margin: 0;
+  color: rgba(247, 245, 239, 0.72);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.cookie-copy strong {
+  color: var(--paper);
+}
+
+.cookie-copy a {
+  color: var(--paper);
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+.cookie-copy a:hover {
+  color: var(--accent);
+}
+
+.cookie-actions {
+  display: flex;
+  flex: none;
+  gap: 10px;
+}
+
+.cookie-button {
+  min-height: 44px;
+  padding: 0 17px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font: 700 14px/1 Inter, sans-serif;
+  cursor: pointer;
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.cookie-button:hover {
+  transform: translateY(-2px);
+}
+
+.cookie-button:focus-visible {
+  outline: 3px solid rgba(255, 107, 74, 0.45);
+  outline-offset: 3px;
+}
+
+.cookie-button-primary {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.cookie-button-secondary {
+  border-color: rgba(247, 245, 239, 0.24);
+  background: transparent;
+  color: var(--paper);
+}
+
+.cookie-button-secondary:hover {
+  border-color: rgba(247, 245, 239, 0.5);
+  background: rgba(247, 245, 239, 0.08);
+}
+
+.cookie-settings {
+  position: fixed;
+  right: 18px;
+  bottom: 14px;
+  z-index: 90;
+  padding: 6px 8px;
+  border: 0;
+  background: rgba(16, 23, 38, 0.72);
+  color: rgba(247, 245, 239, 0.78);
+  border-radius: 7px;
+  font: 600 12px/1.2 Inter, sans-serif;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.cookie-settings:hover {
+  color: var(--paper);
+}
+
+.cookie-settings:focus-visible {
+  outline: 3px solid rgba(255, 107, 74, 0.45);
+  outline-offset: 3px;
+}
+
+.cookie-settings[hidden] {
+  display: none;
+}
+
+@keyframes cookie-enter {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+.agreement-page {
+  min-height: 100vh;
+  padding: clamp(28px, 6vw, 72px) clamp(18px, 6vw, 80px);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.agreement-shell {
+  width: min(760px, 100%);
+  margin: 0 auto;
+}
+
+.agreement-back {
+  display: inline-flex;
+  margin-bottom: 48px;
+  color: var(--muted);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.agreement-back:hover {
+  color: var(--accent);
+}
+
+.agreement-shell h1 {
+  margin: 0 0 20px;
+  font-size: clamp(38px, 7vw, 72px);
+}
+
+.agreement-shell h2 {
+  margin: 38px 0 12px;
+  font-size: clamp(22px, 3vw, 30px);
+}
+
+.agreement-shell p {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.agreement-shell a:not(.agreement-back) {
+  color: var(--ink);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  text-underline-offset: 3px;
+}
+
+.agreement-shell a:not(.agreement-back):hover {
+  color: var(--accent);
+}
+
 @media (max-width: 940px) {
   .nav {
     gap: 16px;
@@ -606,6 +796,20 @@ h1 {
   }
 }
 
+@media (max-width: 780px) {
+  .cookie-banner {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 16px;
+    padding: 18px;
+  }
+
+  .cookie-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 @media (max-width: 620px) {
   .nav a:not([href="#about"]) {
     display: none;
@@ -637,6 +841,11 @@ h1 {
   .secondary-button,
   .store-button {
     width: 100%;
+  }
+
+  .cookie-actions {
+    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 
   .feature-grid {

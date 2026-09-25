@@ -2,8 +2,106 @@ const hero = document.querySelector(".hero");
 const parallaxItems = document.querySelectorAll("[data-depth]");
 const revealItems = document.querySelectorAll(".intro-band > *, .section-heading, .feature-card, .phone-shell, .download > *");
 const stackPanels = document.querySelectorAll(".stack-panel");
+const cookieBanner = document.querySelector(".cookie-banner");
+const cookieButtons = document.querySelectorAll("[data-cookie-choice]");
+const cookieSettingsButton = document.querySelector(".cookie-settings");
+
+const COOKIE_CONSENT_KEY = "holdit-cookie-consent";
+const METRIKA_ID = 113058718;
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+function loadMetrika() {
+  if (window.ym) {
+    return;
+  }
+
+  window.ym = function () {
+    window.ym.a = window.ym.a || [];
+    window.ym.a.push(arguments);
+  };
+  window.ym.l = Date.now();
+
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = `https://mc.yandex.ru/metrika/tag.js?id=${METRIKA_ID}`;
+  document.head.append(script);
+
+  window.ym(METRIKA_ID, "init", {
+    accurateTrackBounce: true,
+    clickmap: true,
+    referrer: document.referrer,
+    ssr: true,
+    trackLinks: true,
+    url: location.href,
+    webvisor: true,
+  });
+}
+
+function getCookieConsent() {
+  try {
+    return localStorage.getItem(COOKIE_CONSENT_KEY);
+  } catch {
+    return null;
+  }
+}
+
+function saveCookieConsent(value) {
+  try {
+    localStorage.setItem(COOKIE_CONSENT_KEY, value);
+  } catch {}
+}
+
+function closeCookieBanner() {
+  if (!cookieBanner) {
+    return;
+  }
+
+  cookieBanner.classList.add("is-closing");
+  window.setTimeout(() => {
+    cookieBanner.hidden = true;
+    cookieBanner.classList.remove("is-closing");
+    cookieSettingsButton?.removeAttribute("hidden");
+  }, 220);
+}
+
+function openCookieBanner() {
+  if (!cookieBanner) {
+    return;
+  }
+
+  cookieSettingsButton?.setAttribute("hidden", "");
+  cookieBanner.classList.remove("is-closing");
+  cookieBanner.hidden = false;
+  cookieBanner.querySelector("button")?.focus();
+}
+
+const cookieConsent = getCookieConsent();
+
+if (cookieConsent === "all") {
+  loadMetrika();
+}
+
+if (cookieConsent) {
+  cookieSettingsButton?.removeAttribute("hidden");
+} else if (cookieBanner) {
+  openCookieBanner();
+}
+
+cookieButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const choice = button.dataset.cookieChoice;
+    saveCookieConsent(choice);
+
+    if (choice === "all") {
+      loadMetrika();
+    }
+
+    closeCookieBanner();
+  });
+});
+
+cookieSettingsButton?.addEventListener("click", openCookieBanner);
 
 function updateParallax() {
   if (!hero || prefersReducedMotion.matches) {

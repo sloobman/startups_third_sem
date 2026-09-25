@@ -11,19 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113058718', 'ym');
-
-        ym(113058718, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/113058718" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
   </head>
   <body>
     <header class="site-header">
@@ -163,5 +150,18 @@
         </div>
       </section>
     </main>
+
+    <aside class="cookie-banner" id="cookie-banner" aria-labelledby="cookie-title" aria-describedby="cookie-description" role="dialog" hidden>
+      <div class="cookie-copy">
+        <h2 id="cookie-title">Файлы cookie и аналитика</h2>
+        <p id="cookie-description">Мы используем файлы cookie и сервис веб-аналитики <strong>Яндекс.Метрика</strong> для сбора технической статистики и улучшения работы сайта. Вы можете принять все файлы или оставить только необходимые. Подробнее — в <a href="privacy.html">политике конфиденциальности</a>.</p>
+      </div>
+      <div class="cookie-actions">
+        <button class="cookie-button cookie-button-primary" type="button" data-cookie-choice="all">Принять все</button>
+        <button class="cookie-button cookie-button-secondary" type="button" data-cookie-choice="necessary">Только необходимые</button>
+      </div>
+    </aside>
+
+    <button class="cookie-settings" type="button" aria-controls="cookie-banner" hidden>Настройки cookie</button>
   </body>
 </html>
